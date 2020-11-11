@@ -7,7 +7,7 @@ write('Hay nhap N: '); readln(N);
 r := true;
 for i:=2 to N-1 do
 if N mod 2 = 0 then begin
-r:=false
+r:=false;
 break;
 end;
 end.
