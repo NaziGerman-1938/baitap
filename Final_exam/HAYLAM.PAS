@@ -6,18 +6,19 @@ clrscr;
 for i:=0 to 10 do begin
        gotoxy(25+i*2,1);
        write('* ');
-       gotoxy(25+i*2,11);
+       gotoxy(25+i*2,22);
        write('* ');
        delay(250); {ve chieu ngang}
-       gotoxy(25,i+1);
-       write('*');
-       gotoxy(45,i+1);
-       write('*');
-       delay(250); {ve chieu dung}
-       {Ve khung}
-end;
+       end;
+for i:=1 to 22 do begin
+    gotoxy(25,i);
+    write('*');
+    gotoxy(45,i);
+    write('*');
+    delay(250);
+    end;
 for i:=26 to 44 do begin
-gotoxy(i,11-3);
+gotoxy(i,19);
 write('-');
 delay(250);
 end;
