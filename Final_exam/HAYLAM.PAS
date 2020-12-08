@@ -62,12 +62,12 @@ s:=c * 25; {Toc do thay doi}
 v:=t-s;  {Toc do}
 {Main}
 while i<=19 do begin
-w:=0;
+w:=1; {Bat dau tu giay 0,01}
 if a=rd then begin
 gotoxy(x,i);
-write(' ');
-d:=d+k;
-f:=f+1;
+write(' '); {Toi toa do co chu roi xoa chu}
+d:=d+k; {diem +}
+f:=f+1; {Cot moc de tang level}
 break;
 end;
 gotoxy(x,i);

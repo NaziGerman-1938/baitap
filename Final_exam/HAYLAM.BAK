@@ -8,9 +8,9 @@ begin
 assign(fo,'hscore.txt'); rewrite(fo);
 clrscr;
 writeln('Chon do kho cho game: ');
-writeln('1: De (10s),(x1 Point), (5 Points/level');
-writeln('2: Trung Binh (5s), (x2 Point), (4 Points/level)');
-writeln('3: Kho (3s), (x4 Point), (3 Points/level)');
+writeln('1: De (1s),(x1 Point), (5 Points/level');
+writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level)');
+writeln('3: Kho (0.3s), (x4 Point), (3 Points/level)');
 writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level)');
 while not ((b='1') or (b='2') or (b='3') or (b='4')) do begin
 b:=readkey;
