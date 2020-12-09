@@ -116,7 +116,7 @@ if i = 20 then g:=g+1;
 if l = g then break;
 end;
 rewrite(fo);
-write(fo,hs:0:0);
+write(fo,hs:0:2);
 close(fo);
 clrscr;
 writeln('Ban muon the nao: ');
