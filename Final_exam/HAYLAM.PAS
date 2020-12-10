@@ -1,8 +1,7 @@
 uses crt;
 var i,x,c,s,w,f,l,dem,g,z,dem1:word;
     t,k,v,d,hs:real;
-    rd,a:string;
-    b:char;
+    rd,a,b:string;
     fo: text;
 
 begin
