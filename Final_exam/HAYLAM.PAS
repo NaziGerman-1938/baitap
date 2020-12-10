@@ -1,8 +1,7 @@
 uses crt;
 var i,x,c,s,w,f,l,dem,g,z,dem1:word;
     t,k,v,d,hs:real;
-    rd,a:string;
-    b:char;
+    rd,a,b:string;
     fo: text;
 
 begin
@@ -116,7 +115,7 @@ if i = 20 then g:=g+1;
 if l = g then break;
 end;
 rewrite(fo);
-write(fo,hs:0:0);
+write(fo,hs:0:2);
 close(fo);
 clrscr;
 writeln('Ban muon the nao: ');
