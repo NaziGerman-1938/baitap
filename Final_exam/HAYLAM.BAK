@@ -1,11 +1,36 @@
 uses crt;
-var i,x,c,s,w,f,l,dem,g,z:word;
-    t,k,v,d,hs:real;
-    rd,a:string;
-    b:char;
-    fo: text;
+var i,x,c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi:word;
+    t,k,v,d,hs1,hs2,hs3,hs4:real;
+    b,rd,a:char;
+    norscore,rankscore: text;
+    chedo,mucdo,name,password:string;
+    dname,dpass: array[1..100] of string;
+    ds1,ds2,ds3,ds4: array[1..100] of real;
+    tontai:boolean;
 
 begin
+clrscr;
+gotoxy(32,10);
+writeln('Nhan phim bat ky de tiep tuc...');
+readkey;
+clrscr;
+gotoxy(1,1);
+writeln('Chon che do choi: ');
+writeln('1. Choi thuong');
+writeln('2. Xep hang');
+while not ((b='1') or (b='2')) do begin
+b:=readkey;
+case b of
+'1': chedo:='normal';
+'2': chedo:='rank';
+else writeln('Khong the xac dinh su lua chon nay, vui long chon lai');
+end;
+end;
+if chedo='rank' then begin
+write('Hay nhap ten: '); readln(name);
+write('Hay nhap mat khau: '); readln(password);
+end;
+b:='#';
 clrscr;
 writeln('Chon do kho cho game: ');
 writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau)');
@@ -15,12 +40,12 @@ writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So 
 while not ((b='1') or (b='2') or (b='3') or (b='4')) do begin
 b:=readkey;
 case b of
-'1': begin t:=1000; k:=1; z:=5; l:=5; end;
-'2': begin t:=500; k:=2;  z:=4; l:=3; end;
-'3': begin t:=300; k:=4;  z:=3; l:=1; end;
+'1': begin t:=1000; k:=1; z:=5; l:=5; mucdo := 'easy'; end;
+'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; end;
+'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; end;
 '4': begin write('Nhap t: '); readln(t); t:=t*1000; write('Nhap cap so tang diem: '); readln(k);
      write('Nhap So point/level: '); readln(z);
-     write('Nhap so mau ban muon: '); readln(l); end;
+     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option'; end;
 else writeln('Khong xac dinh duoc su lua chon, vui long chon lai');
 end;
 end;
@@ -28,10 +53,49 @@ randomize;
 b:='r';
 while b='r' do begin
 clrscr;
-assign(fo,'data.txt');
-reset(fo);
-read(fo,hs);
-rewrite(fo);
+if chedo='normal' then begin
+assign(norscore,'data.txt');
+reset(norscore);
+readln(norscore,hs1);
+readln(norscore,hs2);
+readln(norscore,hs3);
+readln(norscore,hs4);
+close(norscore);
+end;
+if chedo='rank' then begin
+assign(rankscore,'account.txt'); reset(rankscore);
+dem2:=1;
+tontai:=FALSE;
+while not Eof(rankscore) do begin
+readln(rankscore,dname[dem2]);
+readln(rankscore,dpass[dem2]);
+if (dname[dem2]=name) and (dpass[dem2]=password) then begin tontai:=TRUE; luu:=dem2; end;
+readln(rankscore,ds1[dem2]);
+readln(rankscore,ds2[dem2]);
+readln(rankscore,ds3[dem2]);
+readln(rankscore,ds4[dem2]);
+dem2:=dem2+1;
+end;
+close(rankscore);
+if tontai=TRUE then begin sochi:=dem2-1; end else begin
+sochi:=dem2;
+luu:=sochi;
+append(rankscore);
+dname[luu]:=name;
+dpass[luu]:=password;
+ds1[luu]:=0;
+ds2[luu]:=0;
+ds3[luu]:=0;
+ds4[luu]:=0;
+writeln(rankscore,dname[luu]);
+writeln(rankscore,dpass[luu]);
+writeln(rankscore,ds1[luu]:0:2);
+writeln(rankscore,ds2[luu]:0:2);
+writeln(rankscore,ds3[luu]:0:2);
+writeln(rankscore,ds4[luu]:0:2);
+close(rankscore);
+end;
+end;
 for i:=0 to 10 do begin
        gotoxy(25+i*2,1);
        write('* ');
@@ -56,15 +120,21 @@ end;
 f:=0;
 d:=0;
 g:=0;
+if chedo='rank' then begin
+gotoxy(50,7);
+write('Ten: ',dname[luu]);
+end;
+gotoxy(50,8);
+write('Muc do: ',mucdo);
 {base} {setup}
-while true do begin
+while true do begin {1}
 rd:=Chr(random(25)+97); {random chu cai de nhap}
 x:=random(18)+26;       {random truc hoanh`}
 i:=2;{y}
 c:=f div z; {level}
 gotoxy(50,9);
 write('Mau: ');
-for dem:=1 to l-g do begin
+for dem:=1 to l-g do begin {2}
 gotoxy(55+dem,9);
 write('+');
 gotoxy(56+l-g,9);
@@ -74,18 +144,94 @@ gotoxy(50,10);
 write('Level: ',c); {Viet detail level}
 gotoxy(50,11);
 write('Point: ',d:0:2); {Viet detail diem}
-if d>hs then begin
-hs:=d;
+if mucdo='easy' then begin {3}
+if chedo='normal' then
+if d>hs1 then begin{4}
+hs1:=d;
 gotoxy(50,12);
-write('Highscore: ',hs:0:2); {Viet detail highscore}
-end else begin
+write('Highscore: ',hs1:0:2); {Viet detail highscore}
+end else begin {5}
 gotoxy(50,12);
-write('Highscore: ',hs:0:2);
+write('Highscore: ',hs1:0:2);
+end;
+if chedo='rank' then
+if d>ds1[luu] then begin {6}
+ds1[luu]:=d;
+gotoxy(50,12);
+write('Highscore: ',ds1[luu]:0:2); {Viet detail highscore}
+end else begin {7}
+gotoxy(50,12);
+write('Highscore: ',ds1[luu]:0:2);
+end;
+end;
+if mucdo='normal' then begin {8}
+if chedo='normal' then
+if d>hs2 then begin {9}
+hs2:=d;
+gotoxy(50,12);
+write('Highscore: ',hs2:0:2); {Viet detail highscore}
+end else begin {10}
+gotoxy(50,12);
+write('Highscore: ',hs2:0:2);
+end;
+if chedo='rank' then
+if d>ds2[luu] then begin {11}
+ds2[luu]:=d;
+gotoxy(50,12);
+write('Highscore: ',ds2[luu]:0:2); {Viet detail highscore}
+end else begin {12}
+gotoxy(50,12);
+write('Highscore: ',ds2[luu]:0:2);
+end;
+end;
+if mucdo='hard'then begin {13}
+if chedo='normal' then
+if d>hs3 then begin {14}
+hs3:=d;
+gotoxy(50,12);
+write('Highscore: ',hs3:0:2); {Viet detail highscore}
+end else begin {15}
+gotoxy(50,12);
+write('Highscore: ',hs3:0:2);
+end;
+if chedo='rank' then
+if d>ds3[luu] then begin {16}
+ds3[luu]:=d;
+gotoxy(50,12);
+write('Highscore: ',ds3[luu]:0:2); {Viet detail highscore}
+end else begin {17}
+gotoxy(50,12);
+write('Highscore: ',ds3[luu]:0:2);
+end;
+end;
+if chedo='option'then begin {18}
+if chedo='normal' then
+if d>hs4 then begin {19}
+hs4:=d;
+gotoxy(50,12);
+write('Highscore: ',hs4:0:2); {Viet detail highscore}
+end else begin {20}
+gotoxy(50,12);
+write('Highscore: ',hs4:0:2);
+end;
+if chedo='rank' then
+if d>ds4[luu] then begin {21}
+ds4[luu]:=d;
+gotoxy(50,12);
+write('Highscore: ',ds4[luu]:0:2); {Viet detail highscore}
+end else begin {22}
+gotoxy(50,12);
+write('Highscore: ',ds4[luu]:0:2);
+end;
 end;
 s:=c * 25; {Toc do thay doi}
 v:=t-s;  {Toc do}
+for dem:=26 to 44 do begin {23}
+gotoxy(dem,19);
+write('-');
+end;
 {Main}
-while i<=19 do begin
+while i<=19 do begin {24}
 w:=1; {Bat dau tu giay 0,01}
 if a=rd then begin
 gotoxy(x,i);
@@ -94,13 +240,6 @@ d:=d+k; {diem +}
 f:=f+1; {Cot moc de tang level}
 break;
 end;
-for dem:=0 to 10 do begin
-       gotoxy(25+i*2,1);
-       write('* ');
-       gotoxy(25+i*2,22);
-       write('* ');
-       delay(250); {ve chieu ngang}
-       end;
 gotoxy(x,i);
 write(rd);
 while (a<>rd) and  (w<=v) do begin
@@ -114,13 +253,30 @@ end;
 gotoxy(x,i);
 write(' ');
 i:=i+1;
-end;
+{}end;
 if i = 20 then g:=g+1;
 if l = g then break;
 end;
-rewrite(fo);
-write(fo,hs:0:0);
-close(fo);
+if chedo='normal' then begin
+rewrite(norscore);
+writeln(norscore,hs1:0:2);
+writeln(norscore,hs2:0:2);
+writeln(norscore,hs3:0:2);
+writeln(norscore,hs4:0:2);
+close(norscore);
+end;
+if chedo='rank' then begin
+rewrite(rankscore);
+for dem3:=1 to sochi do begin
+writeln(rankscore,dname[dem3]);
+writeln(rankscore,dpass[dem3]);
+writeln(rankscore,ds1[dem3]:0:2);
+writeln(rankscore,ds2[dem3]:0:2);
+writeln(rankscore,ds3[dem3]:0:2);
+writeln(rankscore,ds4[dem3]:0:2);
+end;
+close(rankscore);
+end;
 clrscr;
 writeln('Ban muon the nao: ');
 writeln('1: Choi lai (phim r)');
