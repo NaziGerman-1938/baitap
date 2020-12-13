@@ -14,6 +14,10 @@ gotoxy(32,10);
 writeln('Nhan phim bat ky de tiep tuc...');
 readkey;
 clrscr;
+randomize;
+b:='m';
+while (b='r') or (b='m') do begin
+if b='m' then begin
 gotoxy(1,1);
 writeln('Chon che do choi: ');
 writeln('1. Choi thuong');
@@ -26,7 +30,7 @@ case b of
 else writeln('Khong the xac dinh su lua chon nay, vui long chon lai');
 end;
 end;
-if chedo='rank' then begin
+if (chedo='rank') and ((name='')and (password=''))then begin
 write('Hay nhap ten: '); readln(name);
 write('Hay nhap mat khau: '); readln(password);
 end;
@@ -49,9 +53,7 @@ case b of
 else writeln('Khong xac dinh duoc su lua chon, vui long chon lai');
 end;
 end;
-randomize;
-b:='r';
-while b='r' do begin
+end;
 clrscr;
 if chedo='normal' then begin
 assign(norscore,'data.txt');
@@ -281,8 +283,9 @@ clrscr;
 writeln('Ban muon the nao: ');
 writeln('1: Choi lai (phim r)');
 writeln('2: thoat game (phim e)');
+writeln('3: ve man hinh chinh (phim m)');
 b:=readkey;
-while (b<>'r') and (b<>'e') do begin
+while (b<>'r') and (b<>'e')  and (b<>'m') do begin
 writeln('Su lua chon khong duoc xac dinh, vui long chon lai!');
 b:=readkey;
 end;
