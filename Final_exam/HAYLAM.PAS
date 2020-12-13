@@ -17,45 +17,29 @@ clrscr;
 randomize;
 b:='m';
 while (b='r') or (b='m') do begin
-if b='m' then begin
+while b='m' do begin
+b:='b';
+while b='b' do begin
 clrscr;
 gotoxy(1,1);
 writeln('Chon che do choi: ');
 writeln('1. Choi thuong');
 writeln('2. Xep hang');
-while not ((b='1') or (b='2')) do begin
+writeln('3. Thoat game');
+while not ((b='1') or (b='2') or (b='3'))do begin
 b:=readkey;
 case b of
 '1': chedo:='normal';
 '2': chedo:='rank';
+'3': exit;
 else writeln('Khong the xac dinh su lua chon nay, vui long chon lai');
 end;
 end;
 if (chedo='rank') and ((name='')and (password=''))then begin
+clrscr;
 write('Hay nhap ten: '); readln(name);
 write('Hay nhap mat khau: '); readln(password);
 end;
-b:='#';
-clrscr;
-writeln('Chon do kho cho game: ');
-writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau)');
-writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level), (3 mau)');
-writeln('3: Kho (0.3s), (x4 Point), (3 Points/level)), (1 mau )');
-writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So mau tu chon)');
-while not ((b='1') or (b='2') or (b='3') or (b='4')) do begin
-b:=readkey;
-case b of
-'1': begin t:=1000; k:=1; z:=5; l:=5; mucdo := 'easy'; end;
-'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; end;
-'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; end;
-'4': begin write('Nhap t: '); readln(t); t:=t*1000; write('Nhap cap so tang diem: '); readln(k);
-     write('Nhap So point/level: '); readln(z);
-     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option'; end;
-else writeln('Khong xac dinh duoc su lua chon, vui long chon lai');
-end;
-end;
-end;
-clrscr;
 if chedo='normal' then begin
 assign(norscore,'data.txt');
 reset(norscore);
@@ -99,6 +83,42 @@ writeln(rankscore,ds4[luu]:0:2);
 close(rankscore);
 end;
 end;
+b:='#';
+if chedo='rank' then begin
+clrscr;
+writeln('1: Choi');
+writeln('2: Xem rank');
+writeln('3: Quay lai');
+while (b<>'1') and (b<>'2') and (b<>'b') do begin
+b:=readkey;
+case b of
+'3': b:='b';
+else writeln('Khong xac dinh duoc su lua chon nay, vui long chon lai');
+end;
+end;
+end;
+end;
+clrscr;
+b:='#';
+writeln('Chon do kho cho game: ');
+writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau)');
+writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level), (3 mau)');
+writeln('3: Kho (0.3s), (x4 Point), (3 Points/level)), (1 mau )');
+writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So mau tu chon)');
+while not ((b='1') or (b='2') or (b='3') or (b='4')) do begin
+b:=readkey;
+case b of
+'1': begin t:=1000; k:=1; z:=5; l:=5; mucdo := 'easy'; end;
+'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; end;
+'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; end;
+'4': begin write('Nhap t: '); readln(t); t:=t*1000; write('Nhap cap so tang diem: '); readln(k);
+     write('Nhap So point/level: '); readln(z);
+     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option'; end;
+else writeln('Khong xac dinh duoc su lua chon, vui long chon lai');
+end;
+end;
+end;
+clrscr;
 for i:=0 to 10 do begin
        gotoxy(25+i*2,1);
        write('* ');
