@@ -1,5 +1,5 @@
 uses crt;
-var c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi,soluong,dc,cc,y,soluong1:word;
+var c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi,soluong,dc,cc,y,soluong1,dem4:word;
     t,k,v,d,hs1,hs2,hs3,hs4:real;
     c1,b,a:char;
     norscore,rankscore: text;
@@ -207,10 +207,10 @@ while true do begin {1}
 if mucdo='easy' then soluong:=1 else soluong:=(c div cc) + 1;
 for dem3:=1 to soluong do begin
 rd[dem3]:=Chr(random(25)+97); {random chu cai de nhap}
-x[dem3]:=random(18)+26;       {random truc hoanh`}
-while (rd[dem3]=rd[dem3-1]) or (x[dem3]=x[dem3-1]) do begin
-rd[dem3]:=Chr(random(25)+97);
-x[dem3]:=random(18)+26;
+x[dem3]:=random(18)+26;  {random truc hoanh`}
+for dem4:=1 to dem3-1 do begin
+while rd[dem4]=rd[dem3] do rd[dem4]:=Chr(random(25)+97);
+while x[dem4]=x[dem3] do x[dem4]:=random(18)+26;
 end;
 end;
 y:=2;{y}
@@ -311,6 +311,7 @@ s:=c * 25; {Toc do thay doi}
 v:=t-s;  {Toc do}
 soluong1:=soluong;
 nhap:=false;
+a:='#';
 for dem:=26 to 44 do begin {23}
 gotoxy(dem,19);
 write('-');
