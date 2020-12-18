@@ -202,6 +202,12 @@ write('Ten: ',dname[luu]);
 end;
 gotoxy(50,8);
 write('Muc do: ',mucdo);
+gotoxy(50,9);
+write('Mau: ');
+for dem:=1 to l-g do begin {2}
+gotoxy(55+dem,9);
+write('+');
+end;
 {base} {setup}
 while true do begin {1}
 if mucdo='easy' then soluong:=1 else soluong:=(c div cc) + 1;
@@ -215,14 +221,8 @@ end;
 end;
 y:=2;{y}
 c:=f div z; {level}
-gotoxy(50,9);
-write('Mau: ');
-for dem:=1 to l-g do begin {2}
-gotoxy(55+dem,9);
-write('+');
 gotoxy(56+l-g,9);
 write(' ');
-end;
 gotoxy(50,10);
 write('Level: ',c); {Viet detail level}
 gotoxy(50,11);
