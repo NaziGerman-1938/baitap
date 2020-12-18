@@ -210,6 +210,8 @@ write('+');
 end;
 {base} {setup}
 while true do begin {1}
+y:=2;{y}
+c:=f div z; {level}
 if mucdo='easy' then soluong:=1 else soluong:=(c div cc) + 1;
 for dem3:=1 to soluong do begin
 rd[dem3]:=Chr(random(25)+97); {random chu cai de nhap}
@@ -219,8 +221,6 @@ while rd[dem4]=rd[dem3] do rd[dem4]:=Chr(random(25)+97);
 while x[dem4]=x[dem3] do x[dem4]:=random(18)+26;
 end;
 end;
-y:=2;{y}
-c:=f div z; {level}
 gotoxy(56+l-g,9);
 write(' ');
 gotoxy(50,10);
@@ -324,8 +324,7 @@ if nhap=true then begin
 gotoxy(x[dc],i[dc]);
 write(' '); {Toi toa do co chu roi xoa chu}
 d:=d+k; {diem +}
-f:=f+1; {Cot moc de tang level}
-if soluong1-1=0 then break else if soluong1-1>0 then soluong1:=soluong1-1;
+if soluong1-1=0 then begin f:=f+1; break; end else if soluong1-1>0 then soluong1:=soluong1-1;
 end;
 for dem3:=1 to soluong do begin
 gotoxy(x[dem3],i[dem3]);
