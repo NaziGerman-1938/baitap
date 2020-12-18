@@ -1,9 +1,9 @@
 uses crt;
 var c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi,soluong,dc,cc,y,soluong1,dem4:word;
-    t,k,v,d,hs1,hs2,hs3,hs4:real;
+    t,k,v,d,hs1,hs2,hs3,hs4,temp:real;
     c1,b,a:char;
     norscore,rankscore: text;
-    chedo,mucdo,name,password:string;
+    chedo,mucdo,name,password,temps:string;
     dname,dpass: array[1..100] of string;
     ds1,ds2,ds3,ds4: array[1..100] of real;
     x,i:array[1..100] of word;
@@ -88,20 +88,164 @@ writeln(rankscore,ds4[luu]:0:2);
 close(rankscore);
 end;
 end;
-b:='#';
-if chedo='rank' then begin
+c1:='4';
+while (chedo='rank') and (c1='4') do begin
+c1:='#';
 clrscr;
 writeln('1: Choi');
 writeln('2: Xem rank');
 writeln('3: Quay lai');
+b:='#';
 while (b<>'1') and (b<>'2') and (b<>'3') do begin
 b:=readkey;
 case b of
+'2': begin
+c1:='e';
+while c1='e'do begin
+clrscr;
+writeln('Xem:');
+writeln('1.Che do de');
+writeln('2.Che do trung binh');
+writeln('3. Che do kho');
+writeln('4. Quay lai');
+b:='#';
+while (b<>'1') and (b<>'2') and (b<>'3') and (b<>'4') do begin
+b:=readkey;
+case b of
+'1':
+begin
+for dem3:=1 to sochi-1 do
+for dem2:=1 to sochi-1 do
+if ds1[dem2+1]>ds1[dem2] then begin
+temps:=dname[dem2];
+dname[dem2]:=dname[dem2+1];
+dname[dem2+1]:=temps;
+temps:=dpass[dem2];
+dpass[dem2]:=dpass[dem2+1];
+dpass[dem2+1]:=temps;
+temp:=ds1[dem2];
+ds1[dem2]:=ds1[dem2+1];
+ds1[dem2+1]:=temp;
+temp:=ds2[dem2];
+ds2[dem2]:=ds2[dem2+1];
+ds2[dem2+1]:=temp;
+temp:=ds3[dem2];
+ds3[dem2]:=ds3[dem2+1];
+ds3[dem2+1]:=temp;
+temp:=ds4[dem2];
+ds4[dem2]:=ds4[dem2+1];
+ds4[dem2+1]:=temp;
+end;
+clrscr;
+write('Nhan e de quay lai');
+gotoxy(1,2); write('Rank');
+gotoxy(4,2); write('Name');
+gotoxy(16,2); write('Score');
+for dem3:=1 to sochi do begin
+gotoxy(1,2+dem3); write(dem3);
+gotoxy(4,2+dem3); write(dname[dem3]);
+gotoxy(16,2+dem3); write(ds1[dem3]:0:2);
+b:='#';
+end;
+while b<>'e' do begin
+b:=readkey; c1:=b; if b<>'e' then write('Khong xac dinh su lua chon nay');
+end;
+break;
+end;
+'2':
+begin
+for dem3:=1 to sochi-1 do
+for dem2:=1 to sochi-1 do
+if ds2[dem2+1]>ds2[dem2] then begin
+temps:=dname[dem2];
+dname[dem2]:=dname[dem2+1];
+dname[dem2+1]:=temps;
+temps:=dpass[dem2];
+dpass[dem2]:=dpass[dem2+1];
+dpass[dem2+1]:=temps;
+temp:=ds1[dem2];
+ds1[dem2]:=ds1[dem2+1];
+ds1[dem2+1]:=temp;
+temp:=ds2[dem2];
+ds2[dem2]:=ds2[dem2+1];
+ds2[dem2+1]:=temp;
+temp:=ds3[dem2];
+ds3[dem2]:=ds3[dem2+1];
+ds3[dem2+1]:=temp;
+temp:=ds4[dem2];
+ds4[dem2]:=ds4[dem2+1];
+ds4[dem2+1]:=temp;
+end;
+clrscr;
+write('Nhan e de quay lai');
+gotoxy(1,2); write('Rank');
+gotoxy(4,2); write('Name');
+gotoxy(16,2); write('Score');
+for dem3:=1 to sochi do begin
+gotoxy(1,2+dem3); write(dem3);
+gotoxy(4,2+dem3); write(dname[dem3]);
+gotoxy(16,2+dem3); write(ds2[dem3]:0:2);
+b:='#';
+end;
+while b<>'e' do begin
+b:=readkey; c1:=b; if b<>'e' then write('Khong xac dinh su lua chon nay');
+end;
+break;
+end;
+'3':
+begin
+for dem3:=1 to sochi-1 do
+for dem2:=1 to sochi-1 do
+if ds3[dem2+1]>ds3[dem2] then begin
+temps:=dname[dem2];
+dname[dem2]:=dname[dem2+1];
+dname[dem2+1]:=temps;
+temps:=dpass[dem2];
+dpass[dem2]:=dpass[dem2+1];
+dpass[dem2+1]:=temps;
+temp:=ds1[dem2];
+ds1[dem2]:=ds1[dem2+1];
+ds1[dem2+1]:=temp;
+temp:=ds2[dem2];
+ds2[dem2]:=ds2[dem2+1];
+ds2[dem2+1]:=temp;
+temp:=ds3[dem2];
+ds3[dem2]:=ds3[dem2+1];
+ds3[dem2+1]:=temp;
+temp:=ds4[dem2];
+ds4[dem2]:=ds4[dem2+1];
+ds4[dem2+1]:=temp;
+end;
+clrscr;
+write('Nhan e de quay lai');
+gotoxy(1,2); write('Rank');
+gotoxy(4,2); write('Name');
+gotoxy(16,2); write('Score');
+for dem3:=1 to sochi do begin
+gotoxy(1,2+dem3); write(dem3);
+gotoxy(4,2+dem3); write(dname[dem3]);
+gotoxy(16,2+dem3); write(ds3[dem3]:0:2);
+b:='#';
+end;
+while b<>'e' do begin
+b:=readkey; c1:=b; if b<>'e' then write('Khong xac dinh su lua chon nay');
+end;
+break;
+end;
+'4': begin c1:='4'; break; end;
+else writeln('Khong xac dinh duoc su lua chon');
+end;
+if c1='4' then break;
+end;
+end;
+end;
 '3': c1:='b';
 else writeln('Khong xac dinh duoc su lua chon nay, vui long chon lai');
 end;
+if c1='4' then break;
 end;
 end;
+if c1='4' then continue;
 end;
 clrscr;
 b:='#';
@@ -139,10 +283,151 @@ writeln('3: Quay lai');
 while (b<>'1') and (b<>'2') and (b<>'3') do begin
 b:=readkey;
 case b of
+'2':
+begin
+c1:='e';
+while c1='e'do begin
+clrscr;
+writeln('Xem:');
+writeln('1.Che do de');
+writeln('2.Che do trung binh');
+writeln('3. Che do kho');
+writeln('4. Quay lai');
+b:='#';
+while (b<>'1') and (b<>'2') and (b<>'3') and (b<>'4') do begin
+b:=readkey;
+case b of
+'1':
+begin
+for dem3:=1 to sochi-1 do
+for dem2:=1 to sochi-1 do
+if ds1[dem2+1]>ds1[dem2] then begin
+temps:=dname[dem2];
+dname[dem2]:=dname[dem2+1];
+dname[dem2+1]:=temps;
+temps:=dpass[dem2];
+dpass[dem2]:=dpass[dem2+1];
+dpass[dem2+1]:=temps;
+temp:=ds1[dem2];
+ds1[dem2]:=ds1[dem2+1];
+ds1[dem2+1]:=temp;
+temp:=ds2[dem2];
+ds2[dem2]:=ds2[dem2+1];
+ds2[dem2+1]:=temp;
+temp:=ds3[dem2];
+ds3[dem2]:=ds3[dem2+1];
+ds3[dem2+1]:=temp;
+temp:=ds4[dem2];
+ds4[dem2]:=ds4[dem2+1];
+ds4[dem2+1]:=temp;
+end;
+clrscr;
+write('Nhan e de quay lai');
+gotoxy(1,2); write('Rank');
+gotoxy(4,2); write('Name');
+gotoxy(16,2); write('Score');
+for dem3:=1 to sochi do begin
+gotoxy(1,2+dem3); write(dem3);
+gotoxy(4,2+dem3); write(dname[dem3]);
+gotoxy(16,2+dem3); write(ds1[dem3]:0:2);
+b:='#';
+end;
+while b<>'e' do begin
+b:=readkey; c1:=b; if b<>'e' then write('Khong xac dinh su lua chon nay');
+end;
+break;
+end;
+'2':
+begin
+for dem3:=1 to sochi-1 do
+for dem2:=1 to sochi-1 do
+if ds2[dem2+1]>ds2[dem2] then begin
+temps:=dname[dem2];
+dname[dem2]:=dname[dem2+1];
+dname[dem2+1]:=temps;
+temps:=dpass[dem2];
+dpass[dem2]:=dpass[dem2+1];
+dpass[dem2+1]:=temps;
+temp:=ds1[dem2];
+ds1[dem2]:=ds1[dem2+1];
+ds1[dem2+1]:=temp;
+temp:=ds2[dem2];
+ds2[dem2]:=ds2[dem2+1];
+ds2[dem2+1]:=temp;
+temp:=ds3[dem2];
+ds3[dem2]:=ds3[dem2+1];
+ds3[dem2+1]:=temp;
+temp:=ds4[dem2];
+ds4[dem2]:=ds4[dem2+1];
+ds4[dem2+1]:=temp;
+end;
+clrscr;
+write('Nhan e de quay lai');
+gotoxy(1,2); write('Rank');
+gotoxy(4,2); write('Name');
+gotoxy(16,2); write('Score');
+for dem3:=1 to sochi do begin
+gotoxy(1,2+dem3); write(dem3);
+gotoxy(4,2+dem3); write(dname[dem3]);
+gotoxy(16,2+dem3); write(ds2[dem3]:0:2);
+b:='#';
+end;
+while b<>'e' do begin
+b:=readkey; c1:=b; if b<>'e' then write('Khong xac dinh su lua chon nay');
+end;
+break;
+end;
+'3':
+begin
+for dem3:=1 to sochi-1 do
+for dem2:=1 to sochi-1 do
+if ds3[dem2+1]>ds3[dem2] then begin
+temps:=dname[dem2];
+dname[dem2]:=dname[dem2+1];
+dname[dem2+1]:=temps;
+temps:=dpass[dem2];
+dpass[dem2]:=dpass[dem2+1];
+dpass[dem2+1]:=temps;
+temp:=ds1[dem2];
+ds1[dem2]:=ds1[dem2+1];
+ds1[dem2+1]:=temp;
+temp:=ds2[dem2];
+ds2[dem2]:=ds2[dem2+1];
+ds2[dem2+1]:=temp;
+temp:=ds3[dem2];
+ds3[dem2]:=ds3[dem2+1];
+ds3[dem2+1]:=temp;
+temp:=ds4[dem2];
+ds4[dem2]:=ds4[dem2+1];
+ds4[dem2+1]:=temp;
+end;
+clrscr;
+write('Nhan e de quay lai');
+gotoxy(1,2); write('Rank');
+gotoxy(4,2); write('Name');
+gotoxy(16,2); write('Score');
+for dem3:=1 to sochi do begin
+gotoxy(1,2+dem3); write(dem3);
+gotoxy(4,2+dem3); write(dname[dem3]);
+gotoxy(16,2+dem3); write(ds3[dem3]:0:2);
+b:='#';
+end;
+while b<>'e' do begin
+b:=readkey; c1:=b; if b<>'e' then write('Khong xac dinh su lua chon nay');
+end;
+break;
+end;
+'4': begin c1:='4'; break; end;
+end;
+end;
+end;
+end;
 '3': begin c1:='b'; end;
 else writeln('Khong xac dinh duoc su lua chon nay, vui long chon lai');
 end;
+if c1='4' then break;
 end;
+if c1='4' then begin c1:='r'; continue; end;
 if b='3' then break;
 clrscr;
 b:='#';
@@ -172,6 +457,11 @@ end;
 end;
 end;
 clrscr;
+for dem3:=1 to sochi do
+if (name=dname[dem3]) and (password=dpass[dem3]) then begin
+luu:=dem3;
+break;
+end;
 for dem3:=0 to 10 do begin
        gotoxy(25+dem3*2,1);
        write('* ');
