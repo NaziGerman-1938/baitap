@@ -1,12 +1,14 @@
 uses crt;
-var i,x,c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi:word;
+var c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi,soluong,dc,cc,y,soluong1:word;
     t,k,v,d,hs1,hs2,hs3,hs4:real;
-    c1,b,rd,a:char;
+    c1,b,a:char;
     norscore,rankscore: text;
     chedo,mucdo,name,password:string;
     dname,dpass: array[1..100] of string;
     ds1,ds2,ds3,ds4: array[1..100] of real;
-    tontai:boolean;
+    x,i:array[1..100] of word;
+    rd:array[1..100] of char;
+    tontai,nhap:boolean;
 
 begin
 clrscr;
@@ -104,20 +106,22 @@ end;
 clrscr;
 b:='#';
 writeln('Chon do kho cho game: ');
-writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau)');
-writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level), (3 mau)');
-writeln('3: Kho (0.3s), (x4 Point), (3 Points/level)), (1 mau )');
-writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So mau tu chon)');
+writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau), (1 chu)');
+writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level), (3 mau), (4 level/chu)');
+writeln('3: Kho (0.3s), (x4 Point), (3 Points/level)), (1 mau ), (3 level/chu)');
+writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So mau tu chon), (So level/chu)');
 writeln('5: Quay lai');
 while not ((b='1') or (b='2') or (b='3') or (b='4') or (b='5')) do begin
 b:=readkey;
 case b of
 '1': begin t:=1000; k:=1; z:=5; l:=5; mucdo := 'easy'; c1:='#'; end;
-'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; c1:='#'; end;
-'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; c1:='#'; end;
+'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; cc:=4; c1:='#'; end;
+'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; cc:=3; c1:='#'; end;
 '4': begin write('Nhap t: '); readln(t); t:=t*1000; write('Nhap cap so tang diem: '); readln(k);
      write('Nhap So point/level: '); readln(z);
-     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option'; c1:='#'; end;
+     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option';
+     write('Nhap so level/chu: '); readln(cc);
+     c1:='#'; end;
 '5': begin if chedo='normal' then c1:='n';
            if chedo='rank' then c1:='r'; end;
 else writeln('Khong xac dinh duoc su lua chon, vui long chon lai');
@@ -143,20 +147,22 @@ if b='3' then break;
 clrscr;
 b:='#';
 writeln('Chon do kho cho game: ');
-writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau)');
-writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level), (3 mau)');
-writeln('3: Kho (0.3s), (x4 Point), (3 Points/level)), (1 mau )');
-writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So mau tu chon)');
+writeln('1: De (1s),(x1 Point), (5 Points/level), (5 mau), (1 chu)');
+writeln('2: Trung Binh (0.5s), (x2 Point), (4 Points/level), (3 mau), (4 level/chu)');
+writeln('3: Kho (0.3s), (x4 Point), (3 Points/level), (1 mau), (3 level/chu)');
+writeln('4: Tu chon(ts), (cap so tang diem Point tu chon), (So point/level),(So mau tu chon), (So level/chu)');
 writeln('5: Quay lai');
 while not ((b='1') or (b='2') or (b='3') or (b='4') or (b='5')) do begin
 b:=readkey;
 case b of
 '1': begin t:=1000; k:=1; z:=5; l:=5; mucdo := 'easy'; c1:='#'; end;
-'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; c1:='#'; end;
-'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; c1:='#'; end;
+'2': begin t:=500; k:=2;  z:=4; l:=3; mucdo := 'normal'; cc:=4; c1:='#'; end;
+'3': begin t:=300; k:=4;  z:=3; l:=1; mucdo := 'hard'; cc:=3; c1:='#'; end;
 '4': begin write('Nhap t: '); readln(t); t:=t*1000; write('Nhap cap so tang diem: '); readln(k);
      write('Nhap So point/level: '); readln(z);
-     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option'; c1:='#'; end;
+     write('Nhap so mau ban muon: '); readln(l); mucdo := 'option';
+     write('Nhap so level/chu: '); readln(cc);
+     c1:='#'; end;
 '5': begin if chedo='normal' then c1:='n';
            if chedo='rank' then c1:='r'; end;
 else writeln('Khong xac dinh duoc su lua chon, vui long chon lai');
@@ -166,24 +172,24 @@ end;
 end;
 end;
 clrscr;
-for i:=0 to 10 do begin
-       gotoxy(25+i*2,1);
+for dem3:=0 to 10 do begin
+       gotoxy(25+dem3*2,1);
        write('* ');
-       gotoxy(25+i*2,22);
+       gotoxy(25+dem3*2,22);
        write('* ');
        delay(250); {ve chieu ngang}
        end;
 {ve chieu doc}
-for i:=1 to 22 do begin
-    gotoxy(25,i);
+for dem3:=1 to 22 do begin
+    gotoxy(25,dem3);
     write('*');
-    gotoxy(45,i);
+    gotoxy(45,dem3);
     write('*');
     delay(250);
     end;
 {ve vach dinh muc}
-for i:=26 to 44 do begin
-gotoxy(i,19);
+for dem3:=26 to 44 do begin
+gotoxy(dem3,19);
 write('-');
 delay(250);
 end;
@@ -198,9 +204,16 @@ gotoxy(50,8);
 write('Muc do: ',mucdo);
 {base} {setup}
 while true do begin {1}
-rd:=Chr(random(25)+97); {random chu cai de nhap}
-x:=random(18)+26;       {random truc hoanh`}
-i:=2;{y}
+if mucdo='easy' then soluong:=1 else soluong:=(c div cc) + 1;
+for dem3:=1 to soluong do begin
+rd[dem3]:=Chr(random(25)+97); {random chu cai de nhap}
+x[dem3]:=random(18)+26;       {random truc hoanh`}
+while (rd[dem3]=rd[dem3-1]) or (x[dem3]=x[dem3-1]) do begin
+rd[dem3]:=Chr(random(25)+97);
+x[dem3]:=random(18)+26;
+end;
+end;
+y:=2;{y}
 c:=f div z; {level}
 gotoxy(50,9);
 write('Mau: ');
@@ -296,23 +309,31 @@ end;
 end;
 s:=c * 25; {Toc do thay doi}
 v:=t-s;  {Toc do}
+soluong1:=soluong;
+nhap:=false;
 for dem:=26 to 44 do begin {23}
 gotoxy(dem,19);
 write('-');
 end;
 {Main}
-while i<=19 do begin {24}
+while (y<=19) do begin {24}
+for dem3:=1 to soluong do i[dem3]:=y;
 w:=1; {Bat dau tu giay 0,01}
-if a=rd then begin
-gotoxy(x,i);
+if nhap=true then begin
+gotoxy(x[dc],i[dc]);
 write(' '); {Toi toa do co chu roi xoa chu}
 d:=d+k; {diem +}
 f:=f+1; {Cot moc de tang level}
-break;
+if soluong1-1=0 then break else if soluong1-1>0 then soluong1:=soluong1-1;
 end;
-gotoxy(x,i);
-write(rd);
-while (a<>rd) and  (w<=v) do begin
+for dem3:=1 to soluong do begin
+gotoxy(x[dem3],i[dem3]);
+write(rd[dem3]);
+end;
+nhap:=false;
+while (w<=v) do begin
+for dem3:=1 to soluong do if (a=rd[dem3]) and (a<>' ')then begin nhap:=true; dc:=dem3; rd[dem3]:=' '; end;
+if nhap=true then break;
 if keypressed then begin
 a:=readkey;
 continue;
@@ -320,11 +341,13 @@ end;
 delay(1);
 w:=w+1;
 end;
-gotoxy(x,i);
+for dem3:=1 to soluong do begin
+gotoxy(x[dem3],i[dem3]);
 write(' ');
-i:=i+1;
+end;
+y:=y+1;
 {}end;
-if i = 20 then g:=g+1;
+if y = 20 then g:=g+1;
 if l = g then break;
 end;
 if chedo='normal' then begin
