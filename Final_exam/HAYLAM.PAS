@@ -11,6 +11,7 @@ var c,s,w,f,l,dem,g,z,dem1,dem2,dem3,luu,sochi,soluong,dc,cc,y,soluong1,dem4:wor
     tontai,nhap:boolean;
 
 begin
+textcolor(white);
 clrscr;
 gotoxy(32,10);
 writeln('Nhan phim bat ky de tiep tuc...');
@@ -139,12 +140,12 @@ end;
 clrscr;
 write('Nhan e de quay lai');
 gotoxy(1,2); write('Rank');
-gotoxy(4,2); write('Name');
-gotoxy(16,2); write('Score');
+gotoxy(16,2); write('Name');
+gotoxy(32,2); write('Score');
 for dem3:=1 to sochi do begin
 gotoxy(1,2+dem3); write(dem3);
-gotoxy(4,2+dem3); write(dname[dem3]);
-gotoxy(16,2+dem3); write(ds1[dem3]:0:2);
+gotoxy(16,2+dem3); write(dname[dem3]);
+gotoxy(32,2+dem3); write(ds1[dem3]:0:2);
 b:='#';
 end;
 while b<>'e' do begin
@@ -179,12 +180,12 @@ end;
 clrscr;
 write('Nhan e de quay lai');
 gotoxy(1,2); write('Rank');
-gotoxy(4,2); write('Name');
-gotoxy(16,2); write('Score');
+gotoxy(16,2); write('Name');
+gotoxy(32,2); write('Score');
 for dem3:=1 to sochi do begin
 gotoxy(1,2+dem3); write(dem3);
-gotoxy(4,2+dem3); write(dname[dem3]);
-gotoxy(16,2+dem3); write(ds2[dem3]:0:2);
+gotoxy(16,2+dem3); write(dname[dem3]);
+gotoxy(32,2+dem3); write(ds2[dem3]:0:2);
 b:='#';
 end;
 while b<>'e' do begin
@@ -219,12 +220,12 @@ end;
 clrscr;
 write('Nhan e de quay lai');
 gotoxy(1,2); write('Rank');
-gotoxy(4,2); write('Name');
-gotoxy(16,2); write('Score');
+gotoxy(16,2); write('Name');
+gotoxy(32,2); write('Score');
 for dem3:=1 to sochi do begin
 gotoxy(1,2+dem3); write(dem3);
-gotoxy(4,2+dem3); write(dname[dem3]);
-gotoxy(16,2+dem3); write(ds3[dem3]:0:2);
+gotoxy(16,2+dem3); write(dname[dem3]);
+gotoxy(32,2+dem3); write(ds3[dem3]:0:2);
 b:='#';
 end;
 while b<>'e' do begin
@@ -324,12 +325,12 @@ end;
 clrscr;
 write('Nhan e de quay lai');
 gotoxy(1,2); write('Rank');
-gotoxy(4,2); write('Name');
-gotoxy(16,2); write('Score');
+gotoxy(16,2); write('Name');
+gotoxy(32,2); write('Score');
 for dem3:=1 to sochi do begin
 gotoxy(1,2+dem3); write(dem3);
-gotoxy(4,2+dem3); write(dname[dem3]);
-gotoxy(16,2+dem3); write(ds1[dem3]:0:2);
+gotoxy(16,2+dem3); write(dname[dem3]);
+gotoxy(32,2+dem3); write(ds1[dem3]:0:2);
 b:='#';
 end;
 while b<>'e' do begin
@@ -368,8 +369,8 @@ gotoxy(4,2); write('Name');
 gotoxy(16,2); write('Score');
 for dem3:=1 to sochi do begin
 gotoxy(1,2+dem3); write(dem3);
-gotoxy(4,2+dem3); write(dname[dem3]);
-gotoxy(16,2+dem3); write(ds2[dem3]:0:2);
+gotoxy(16,2+dem3); write(dname[dem3]);
+gotoxy(32,2+dem3); write(ds2[dem3]:0:2);
 b:='#';
 end;
 while b<>'e' do begin
@@ -404,12 +405,12 @@ end;
 clrscr;
 write('Nhan e de quay lai');
 gotoxy(1,2); write('Rank');
-gotoxy(4,2); write('Name');
-gotoxy(16,2); write('Score');
+gotoxy(16,2); write('Name');
+gotoxy(32,2); write('Score');
 for dem3:=1 to sochi do begin
 gotoxy(1,2+dem3); write(dem3);
-gotoxy(4,2+dem3); write(dname[dem3]);
-gotoxy(16,2+dem3); write(ds3[dem3]:0:2);
+gotoxy(16,2+dem3); write(dname[dem3]);
+gotoxy(32,2+dem3); write(ds3[dem3]:0:2);
 b:='#';
 end;
 while b<>'e' do begin
@@ -462,12 +463,19 @@ if (name=dname[dem3]) and (password=dpass[dem3]) then begin
 luu:=dem3;
 break;
 end;
+textbackground(yellow);
+for dem3:=25 to 45 do begin
+gotoxy(dem3,1);
+write(' ');
+gotoxy(dem3,22);
+write(' ');
+end;
 for dem3:=0 to 10 do begin
        gotoxy(25+dem3*2,1);
-       write('* ');
+       write('*');
        gotoxy(25+dem3*2,22);
-       write('* ');
-       delay(250); {ve chieu ngang}
+       write('*');
+       {ve chieu ngang}
        end;
 {ve chieu doc}
 for dem3:=1 to 22 do begin
@@ -475,17 +483,31 @@ for dem3:=1 to 22 do begin
     write('*');
     gotoxy(45,dem3);
     write('*');
-    delay(250);
     end;
+textbackground(black);
 {ve vach dinh muc}
 for dem3:=26 to 44 do begin
 gotoxy(dem3,19);
 write('-');
-delay(250);
 end;
 f:=0;
 d:=0;
 g:=0;
+textbackground(lightgreen);
+for dem3:=49 to 69 do begin
+gotoxy(dem3,6);
+write(' ');
+gotoxy(dem3,13);
+write(' ');
+end;
+for dem3:=6 to 13 do begin
+gotoxy(49,dem3);
+write(' ');
+gotoxy(69,dem3);
+write(' ');
+end;
+textbackground(black);
+textcolor(blue);
 if chedo='rank' then begin
 gotoxy(50,7);
 write('Ten: ',dname[luu]);
@@ -494,10 +516,12 @@ gotoxy(50,8);
 write('Muc do: ',mucdo);
 gotoxy(50,9);
 write('Mau: ');
+textcolor(red);
 for dem:=1 to l-g do begin {2}
 gotoxy(55+dem,9);
 write('+');
 end;
+textcolor(white);
 {base} {setup}
 while true do begin {1}
 y:=2;{y}
@@ -513,7 +537,7 @@ end;
 end;
 gotoxy(56+l-g,9);
 write(' ');
-gotoxy(50,10);
+gotoxy(50,10); textcolor(blue);
 write('Level: ',c); {Viet detail level}
 gotoxy(50,11);
 write('Point: ',d:0:2); {Viet detail diem}
@@ -597,6 +621,7 @@ gotoxy(50,12);
 write('Highscore: ',ds4[luu]:0:2);
 end;
 end;
+textcolor(white);
 s:=c * 25; {Toc do thay doi}
 v:=t-s;  {Toc do}
 soluong1:=soluong;
